@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/LambdaSchool/node-server-testing#readme",
   "devDependencies": {
-    "jest": "^24.9.0",
+    "jest": "^26.5.3",
     "supertest": "^4.0.2"
   },
   "dependencies": {
