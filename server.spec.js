@@ -1,4 +1,3 @@
-const { TestScheduler } = require("jest");
 const request = require("supertest");
 const server = require("./server.js");
 
@@ -31,5 +30,26 @@ describe('server.js', () => {
 
             expect(response.body).toEqual(expectedBody);
         });
+    })
+
+    describe('create party post request', () => {
+        test('returns status code 201 created', async () => {
+            const expectedStatusCode = 201;
+
+            const response = await request(server).post('/api/parties').send({ zip: "37207" });
+
+            expect(response.status).toEqual(expectedStatusCode);
+        })
+        test('returns JSON object with id, zip, radius, matches', async () => {
+            const response = await request(server).post('/api/parties').send({ zip: "37207" });
+
+            expect(response.type).toEqual('application/json')
+            expect(response.body).toEqual(expect.objectContaining({
+                id: expect.anything(),
+                zip: expect.anything(),
+                radius: expect.anything(),
+                matches: expect.anything()
+            }))
+        })
     })
 })
