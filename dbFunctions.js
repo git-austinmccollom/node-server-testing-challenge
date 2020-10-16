@@ -4,6 +4,7 @@ module.exports = {
   addParty,
   find,
   findById,
+  remove
 };
 
 async function addParty(party) {
@@ -21,4 +22,8 @@ function find() {
 
 function findById(id) {
   return db("parties").where({ id }).first();
+}
+
+function remove(id) {
+    return db("parties").where({ id }).del()
 }

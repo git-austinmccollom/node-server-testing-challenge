@@ -1,3 +1,4 @@
+const { request } = require('express');
 const express = require('express');
 const server = express();
 const helmet = require('helmet');
@@ -21,6 +22,16 @@ server.post('/api/parties', (req, res) => {
 // Read
 
 // Delete
+
+server.delete('/api/parties/:id', (req, res) => {
+    dbFun.remove(req.params.id)
+    .then( dbRes => {
+        res.status(204).json(dbRes)
+    })
+    .catch( dbErr => {
+        res.status(500).json(dbErr)
+    })
+})
 
 // Sanity Check
 
